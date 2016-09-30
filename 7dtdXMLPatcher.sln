@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7dtdXMLPatcher", "7dtdXMLPatcher\7dtdXMLPatcher.csproj", "{4FC81CEF-9600-4F30-B4EE-EC277FEED756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VDF", "VDF-master\VDF.csproj", "{8392B97A-0EA5-489B-92A3-BBE9CFCCB5A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FC81CEF-9600-4F30-B4EE-EC277FEED756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC81CEF-9600-4F30-B4EE-EC277FEED756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC81CEF-9600-4F30-B4EE-EC277FEED756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC81CEF-9600-4F30-B4EE-EC277FEED756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8392B97A-0EA5-489B-92A3-BBE9CFCCB5A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8392B97A-0EA5-489B-92A3-BBE9CFCCB5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8392B97A-0EA5-489B-92A3-BBE9CFCCB5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8392B97A-0EA5-489B-92A3-BBE9CFCCB5A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
