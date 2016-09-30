@@ -1,0 +1,11 @@
+<resources>
+  <resource blockname="gravel" cluster="1" prob=".8130" rwgGenerationType="all" CopyToAllBiomes="True" />
+  <resource blockname="ironOre" cluster="1" prob=".5" rwgGenerationType="all" CopyToAllBiomes="True" />
+  <resource blockname="potassiumNitrate" cluster="1" prob=".5" rwgGenerationType="all" CopyToAllBiomes="True" />
+  <resource blockname="leadOre" cluster="1" prob=".5" rwgGenerationType="all" CopyToAllBiomes="True" />
+  <resource blockname="coalOre" cluster="1" prob=".5" rwgGenerationType="all" CopyToAllBiomes="True" />
+  <resource blockname="silverOre" cluster="1" prob=".0002" rwgGenerationType="all" CopyToAllBiomes="False" />
+  <resource blockname="goldOre" cluster="1" prob=".0001" rwgGenerationType="all" CopyToAllBiomes="False" />
+  <resource blockname="diamondOre" cluster="1" prob=".00005" rwgGenerationType="all" CopyToAllBiomes="False" />
+  <resource blockname="oilDeposit" cluster="1" prob=".1130" rwgGenerationType="all" CopyToAllBiomes="False" />
+</resources>

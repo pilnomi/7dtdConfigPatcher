@@ -35,6 +35,7 @@
             this.lbBiomesAffected = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnSaveAsDefault = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,11 +101,22 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Game Location:";
             // 
+            // btnSaveAsDefault
+            // 
+            this.btnSaveAsDefault.Location = new System.Drawing.Point(219, 66);
+            this.btnSaveAsDefault.Name = "btnSaveAsDefault";
+            this.btnSaveAsDefault.Size = new System.Drawing.Size(129, 30);
+            this.btnSaveAsDefault.TabIndex = 7;
+            this.btnSaveAsDefault.Text = "Save as Default";
+            this.btnSaveAsDefault.UseVisualStyleBackColor = true;
+            this.btnSaveAsDefault.Click += new System.EventHandler(this.btnSaveAsDefault_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 421);
+            this.Controls.Add(this.btnSaveAsDefault);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbBiomesAffected);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.CheckedListBox lbBiomesAffected;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSaveAsDefault;
     }
 }
 

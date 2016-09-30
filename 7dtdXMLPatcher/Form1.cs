@@ -24,6 +24,7 @@ namespace _7dtdXMLPatcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Resize += frmMain_Resize;
             lblSteamLocation.Text = SteamHelper.getDefaultSteamInstall();
             DirectoryInfo d = Directory.GetParent(SteamHelper.getDefaultSteamInstall());
             string configfilepath = d.FullName + "\\libraryfolders.vdf";
@@ -38,26 +39,69 @@ namespace _7dtdXMLPatcher
 
             bxml = new BiomesXML(gamefolder + "\\biomes.xml");
             loadBiomesList(bxml.findBiomes().ToArray());
+            BindingSource bs = new BindingSource();
+            bs.DataSource = loadResourceTypes();
 
-            dataGridView1.DataSource = loadResourceTypes();
-                
+            dataGridView1.DataSource = bs;
+            dataGridView1.AllowUserToAddRows = true;
+            frmMain_Resize(null, EventArgs.Empty);
+        }
+
+        void frmMain_Resize(object sender, EventArgs e)
+        {
+            lbBiomesAffected.Height = this.Height - lbBiomesAffected.Top - 50;
+            dataGridView1.Height = this.Height - dataGridView1.Top - 50;
+            dataGridView1.Width = this.Width - dataGridView1.Left - 25;
 
         }
 
         List<resourceEntry> loadResourceTypes()
         {
             List<resourceEntry> myList = new List<resourceEntry>();
-            myList.Add(new resourceEntry("gravel", "1", ".8130", "all", true, false));
-            myList.Add(new resourceEntry("ironOre", "1", ".5", "all", true, false));
-            myList.Add(new resourceEntry("potassiumNitrate", "1", ".5", "all", true, false));
-            myList.Add(new resourceEntry("leadOre", "1", ".5", "all", true, false));
-            myList.Add(new resourceEntry("coalOre", "1", ".5", "all", true, false));
-            myList.Add(new resourceEntry("silverOre", "1", ".0002", "all", false, false));
-            myList.Add(new resourceEntry("goldOre", "1", ".0001", "all", false, false));
-            myList.Add(new resourceEntry("diamondOre", "1", ".00005", "all", false, false));
-            myList.Add(new resourceEntry("oilDeposit", "1", ".1130", "all", false, false));
-            
+            if (File.Exists("preferredResources.xml"))
+            {
+                XmlDocument d = new XmlDocument();
+                d.Load("preferredResources.xml");
+                foreach (XmlNode n in d.ChildNodes[0])
+                {
+                    myList.Add(new resourceEntry(n.Attributes["blockname"].Value, n.Attributes["cluster"].Value, n.Attributes["prob"].Value,
+                        n.Attributes["rwgGenerationType"].Value, bool.Parse(n.Attributes["CopyToAllBiomes"].Value), false));
+
+                }
+            }
+            else
+            {
+                myList.Add(new resourceEntry("gravel", "1", ".8130", "all", true, false));
+                myList.Add(new resourceEntry("ironOre", "1", ".5", "all", true, false));
+                myList.Add(new resourceEntry("potassiumNitrate", "1", ".5", "all", true, false));
+                myList.Add(new resourceEntry("leadOre", "1", ".5", "all", true, false));
+                myList.Add(new resourceEntry("coalOre", "1", ".5", "all", true, false));
+                myList.Add(new resourceEntry("silverOre", "1", ".0002", "all", false, false));
+                myList.Add(new resourceEntry("goldOre", "1", ".0001", "all", false, false));
+                myList.Add(new resourceEntry("diamondOre", "1", ".00005", "all", false, false));
+                myList.Add(new resourceEntry("oilDeposit", "1", ".1130", "all", false, false));
+            }
             return myList;
+        }
+
+        void saveResourceTypes()
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement resources = doc.CreateElement("resources");
+            
+            List<resourceEntry> mylist = (List<resourceEntry>)((BindingSource)dataGridView1.DataSource).DataSource;
+            foreach (resourceEntry r in mylist)
+            {
+                XmlElement resource = doc.CreateElement("resource");
+                resource.SetAttribute("blockname", r.blockname);
+                resource.SetAttribute("cluster", r.cluster);
+                resource.SetAttribute("prob", r.prob);
+                resource.SetAttribute("rwgGenerationType", r.rwgGenerationType);
+                resource.SetAttribute("CopyToAllBiomes", r.CopyToAllBiomes.ToString());
+                resources.AppendChild(resource);
+            }
+            doc.AppendChild(resources);
+            doc.Save("preferredResources.xml");
         }
 
         public void loadBiomesList(string[] biomes)
@@ -72,6 +116,11 @@ namespace _7dtdXMLPatcher
             foreach (string s in lbBiomesAffected.CheckedItems)
                 selectedbiomes.Add(s);
             bxml.updateBiomesXML((List<resourceEntry>)dataGridView1.DataSource, selectedbiomes);
+        }
+
+        private void btnSaveAsDefault_Click(object sender, EventArgs e)
+        {
+            saveResourceTypes();
         }
     }
 
@@ -107,6 +156,15 @@ namespace _7dtdXMLPatcher
             this.rwgGenerationType = rwgGenerationType;
             this.CopyToAllBiomes = copytoallbiomes;
             //this.AddToAllSubBiomes = addtoallsubbiomes;
+        }
+
+        public resourceEntry()
+        {
+            blockname = "<enter blockname>";
+            cluster = "1";
+            prob = ".4";
+            rwgGenerationType = "all";
+            CopyToAllBiomes = false;
         }
     }
 
