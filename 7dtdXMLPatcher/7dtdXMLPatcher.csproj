@@ -69,6 +69,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="bin\Debug\7dtdXMLPatcher.exe.config" />
+    <None Include="bin\Debug\7dtdXMLPatcher.vshost.exe.config" />
+    <None Include="bin\Debug\7dtdXMLPatcher.vshost.exe.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -87,9 +90,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\7dtdXMLPatcher.exe" />
+    <Content Include="bin\Debug\7dtdXMLPatcher.pdb" />
+    <Content Include="bin\Debug\7dtdXMLPatcher.vshost.exe" />
+    <Content Include="bin\Debug\HtmlAgilityPack.dll" />
+    <Content Include="bin\Debug\HtmlAgilityPack.pdb" />
+    <Content Include="bin\Debug\HtmlAgilityPack.xml" />
+    <Content Include="bin\Debug\preferredResources.xml" />
+    <Content Include="bin\Debug\VDF.dll" />
+    <Content Include="bin\Debug\VDF.pdb" />
     <Content Include="preferredResources.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
