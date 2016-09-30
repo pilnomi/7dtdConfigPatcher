@@ -68,7 +68,10 @@ namespace _7dtdXMLPatcher
 
         private void btnUpdateBiomesXML_Click(object sender, EventArgs e)
         {
-            bxml.updateBiomesXML((List<resourceEntry>)dataGridView1.DataSource);
+            List<string> selectedbiomes = new List<string>();
+            foreach (string s in lbBiomesAffected.CheckedItems)
+                selectedbiomes.Add(s);
+            bxml.updateBiomesXML((List<resourceEntry>)dataGridView1.DataSource, selectedbiomes);
         }
     }
 
@@ -141,7 +144,7 @@ namespace _7dtdXMLPatcher
 
         }
 
-        public void updateBiomesXML(List<resourceEntry> resources)
+        public void updateBiomesXML(List<resourceEntry> resources, List<string> selectedbiomes)
         {
             int updatedcount=0, addedcount = 0;
 
@@ -157,6 +160,12 @@ namespace _7dtdXMLPatcher
                     if (biomes.Name != "biomes") continue;
                     foreach (HtmlNode n in biomes.Elements("biome"))
                     {
+                        string biomename = n.Attributes["name"].Value;
+                        bool biomeselected = false;
+                        foreach (string s in selectedbiomes)
+                            if (biomename == s) { biomeselected = true; break; }
+                        if (!biomeselected) continue;
+
                         foreach (HtmlNode layers in n.Elements("layers"))
                         {
                             foreach (HtmlNode layer in layers.Elements("layer"))
