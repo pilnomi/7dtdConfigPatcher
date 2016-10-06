@@ -115,7 +115,7 @@ namespace _7dtdXMLPatcher
             List<string> selectedbiomes = new List<string>();
             foreach (string s in lbBiomesAffected.CheckedItems)
                 selectedbiomes.Add(s);
-            bxml.updateBiomesXML((List<resourceEntry>)dataGridView1.DataSource, selectedbiomes);
+            bxml.updateBiomesXML((List<resourceEntry>)((BindingSource)dataGridView1.DataSource).DataSource, selectedbiomes);
         }
 
         private void btnSaveAsDefault_Click(object sender, EventArgs e)
