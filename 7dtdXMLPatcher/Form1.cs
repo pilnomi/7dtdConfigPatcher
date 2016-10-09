@@ -54,6 +54,8 @@ namespace _7dtdXMLPatcher
                     return;
                 }
                 OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "biomes.xml|biomes.xml|All Files (*.*)|*.*";
+
                 if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.Cancel || string.IsNullOrEmpty(ofd.FileName))
                 {
                     this.Close();
@@ -164,6 +166,7 @@ namespace _7dtdXMLPatcher
             string gamefolder = "", finalfilename = "";
 
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "biomes.xml|biomes.xml|All Files (*.*)|*.*";
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.Cancel || string.IsNullOrEmpty(ofd.FileName))
             {
                 if (closeonFileNotFound) this.Close();
@@ -195,6 +198,11 @@ namespace _7dtdXMLPatcher
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             load_bxml(false);
+        }
+
+        private void btnOpenBiomesXML_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(bxml.configFilePath);
         }
     }
 

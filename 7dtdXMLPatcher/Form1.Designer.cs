@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveAsDefault = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.btnOpenBiomesXML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@
             // 
             // btnSaveAsDefault
             // 
-            this.btnSaveAsDefault.Location = new System.Drawing.Point(219, 66);
+            this.btnSaveAsDefault.Location = new System.Drawing.Point(208, 101);
             this.btnSaveAsDefault.Name = "btnSaveAsDefault";
             this.btnSaveAsDefault.Size = new System.Drawing.Size(129, 30);
             this.btnSaveAsDefault.TabIndex = 7;
@@ -113,11 +114,22 @@
             this.linkLabel1.Text = "Game Location:";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // btnOpenBiomesXML
+            // 
+            this.btnOpenBiomesXML.Location = new System.Drawing.Point(219, 66);
+            this.btnOpenBiomesXML.Name = "btnOpenBiomesXML";
+            this.btnOpenBiomesXML.Size = new System.Drawing.Size(129, 30);
+            this.btnOpenBiomesXML.TabIndex = 9;
+            this.btnOpenBiomesXML.Text = "Open Biomes XML";
+            this.btnOpenBiomesXML.UseVisualStyleBackColor = true;
+            this.btnOpenBiomesXML.Click += new System.EventHandler(this.btnOpenBiomesXML_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 421);
+            this.Controls.Add(this.btnOpenBiomesXML);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnSaveAsDefault);
             this.Controls.Add(this.label1);
@@ -145,6 +157,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveAsDefault;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Button btnOpenBiomesXML;
     }
 }
 
