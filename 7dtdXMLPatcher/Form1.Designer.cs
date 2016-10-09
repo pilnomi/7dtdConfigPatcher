@@ -34,8 +34,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lbBiomesAffected = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnSaveAsDefault = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,15 +92,6 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Default Steam Install:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Game Location:";
-            // 
             // btnSaveAsDefault
             // 
             this.btnSaveAsDefault.Location = new System.Drawing.Point(219, 66);
@@ -111,13 +102,24 @@
             this.btnSaveAsDefault.UseVisualStyleBackColor = true;
             this.btnSaveAsDefault.Click += new System.EventHandler(this.btnSaveAsDefault_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(37, 40);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(82, 13);
+            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Game Location:";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 421);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnSaveAsDefault);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbBiomesAffected);
             this.Controls.Add(this.dataGridView1);
@@ -141,8 +143,8 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.CheckedListBox lbBiomesAffected;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSaveAsDefault;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

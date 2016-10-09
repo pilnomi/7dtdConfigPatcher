@@ -34,9 +34,18 @@ namespace _7dtdXMLPatcher
             if (string.IsNullOrEmpty(gamefolder))
                 throw new Exception("No steam library found!");
 
-            gamefolder += @"\steamapps\common\7 Days To Die\Data\Config";
-            lblGameFolder.Text = gamefolder;
-            string finalfilename = gamefolder + "\\biomes.xml";
+            string finalfilename = "";
+            foreach (string gf in configfile.LibraryFolders)
+            {
+                gamefolder = gf;
+                gamefolder += @"\steamapps\common\7 Days To Die\Data\Config";
+                lblGameFolder.Text = gamefolder;
+                finalfilename = gamefolder + "\\biomes.xml";
+                if (File.Exists(finalfilename))
+                    break;
+
+            }
+
             if (!File.Exists(finalfilename))
             {
                 if (MessageBox.Show("Unable to find biomes.xml, please navigate to this file", "", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
@@ -50,12 +59,15 @@ namespace _7dtdXMLPatcher
                     this.Close();
                     return;
                 }
-
                 finalfilename = ofd.FileName;
+                FileInfo fi = new FileInfo(finalfilename);
+                gamefolder = fi.DirectoryName;
+                lblGameFolder.Text = gamefolder;
+
             }
             try
             {
-                bxml = new BiomesXML(gamefolder + "\\biomes.xml");
+                bxml = new BiomesXML(finalfilename);
             }
             catch (Exception ex)
             {
@@ -129,6 +141,7 @@ namespace _7dtdXMLPatcher
 
         public void loadBiomesList(string[] biomes)
         {
+            lbBiomesAffected.Items.Clear();
             for (int i=0; i<biomes.Count();i++)
                 lbBiomesAffected.Items.Add(biomes[i], true);
         }
@@ -144,6 +157,44 @@ namespace _7dtdXMLPatcher
         private void btnSaveAsDefault_Click(object sender, EventArgs e)
         {
             saveResourceTypes();
+        }
+
+        private void load_bxml(bool closeonFileNotFound)
+        {
+            string gamefolder = "", finalfilename = "";
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.Cancel || string.IsNullOrEmpty(ofd.FileName))
+            {
+                if (closeonFileNotFound) this.Close();
+                return;
+            }
+            finalfilename = ofd.FileName;
+            FileInfo fi = new FileInfo(finalfilename);
+            gamefolder = fi.DirectoryName;
+            lblGameFolder.Text = gamefolder;
+
+            finalfilename = ofd.FileName;
+
+            try
+            {
+                bxml = new BiomesXML(finalfilename);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to load biomes.xml");
+            }
+            loadBiomesList(bxml.findBiomes().ToArray());
+            BindingSource bs = new BindingSource();
+            bs.DataSource = loadResourceTypes();
+
+            dataGridView1.DataSource = bs;
+            dataGridView1.AllowUserToAddRows = true;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            load_bxml(false);
         }
     }
 
