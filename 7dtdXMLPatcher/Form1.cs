@@ -282,6 +282,7 @@ namespace _7dtdXMLPatcher
             int updatedcount=0, addedcount = 0;
 
             HtmlAgilityPack.HtmlDocument d = new HtmlAgilityPack.HtmlDocument();
+            d.OptionOutputOriginalCase = true;
             d.Load(configFilePath);
 
             //HtmlNode biomes = d.DocumentNode.Element("biomes");
