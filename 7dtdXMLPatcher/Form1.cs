@@ -36,8 +36,31 @@ namespace _7dtdXMLPatcher
 
             gamefolder += @"\steamapps\common\7 Days To Die\Data\Config";
             lblGameFolder.Text = gamefolder;
+            string finalfilename = gamefolder + "\\biomes.xml";
+            if (!File.Exists(finalfilename))
+            {
+                if (MessageBox.Show("Unable to find biomes.xml, please navigate to this file", "", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    this.Close();
+                    return;
+                }
+                OpenFileDialog ofd = new OpenFileDialog();
+                if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.Cancel || string.IsNullOrEmpty(ofd.FileName))
+                {
+                    this.Close();
+                    return;
+                }
 
-            bxml = new BiomesXML(gamefolder + "\\biomes.xml");
+                finalfilename = ofd.FileName;
+            }
+            try
+            {
+                bxml = new BiomesXML(gamefolder + "\\biomes.xml");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to load biomes.xml");
+            }
             loadBiomesList(bxml.findBiomes().ToArray());
             BindingSource bs = new BindingSource();
             bs.DataSource = loadResourceTypes();
